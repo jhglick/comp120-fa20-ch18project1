@@ -250,6 +250,18 @@ class MyLinkedList(LinkedList):
         """
         super().__init__()
 
+    def addNew(self, otherList): 
+        """
+        Adds to the front (of self) all elements of otherList that
+        are not already in self.
+
+        otherList is a LinkedList object.
+        
+        """
+        for item in otherList:
+            if not self.contains(item):
+                self.addFirst(item)
+
     def addAll(self, otherList): 
         """
         Appends (to the end) all elements of otherList to 
@@ -304,6 +316,27 @@ if __name__ == "__main__":
     for s in listb:
         list2.add(s)
     list3 = MyLinkedList()
+
+    # test addNew method
+    print("Testing addNew method")
+    list1 = MyLinkedList()
+    for s in lista:
+        list1.add(s)
+    ans = ['yellow', 'red', 'green', 'red', 'black']
+    correct_list = MyLinkedList()
+    for s in ans:
+        correct_list.add(s)
+    print("list1 is ", list1)
+    print("list2 is ", list2)
+    print("list1.addNew(list2) should be ", correct_list)
+    list1.addNew(list2)
+    print("After list1.addNew(list2), list1 is", list1)
+    is_list_correct = list1 == correct_list
+    if is_list_correct:
+        print("Your returned list is correct")
+    else:
+        print("Your returned list is incorrect")
+    print()
 
     # test addAll method
     print("Testing addAll method")
